@@ -5,6 +5,11 @@ const pool = require('./db')
 require('dotenv').config()
 
 const app = exp()
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET');
+  next();
+});
 const auth_secret = process.env.GEN_AUTH_SECRET;
 
 function genkey(length = 32) {
